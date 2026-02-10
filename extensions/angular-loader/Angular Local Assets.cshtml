@@ -1,6 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@using AppCode.Extensions.Angular
+
 @{
-  var ngHelper = GetService("Angular.cs");
+  var ngHelper = GetService<Angular>();
   var localDevServer = ngHelper.GetLocalDevServer();
 }
 
