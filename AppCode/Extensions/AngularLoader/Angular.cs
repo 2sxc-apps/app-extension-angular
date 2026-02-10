@@ -12,21 +12,14 @@ namespace AppCode.Extensions.Angular
     // They do a bunch of things, like switching between testing/live code and more.
     // -------------------------------------------------------------------------------------
 
-    // ----------------------------------  Private Constants ----------------------------------
-
     // ------------------------------ Get from Generated HTML ------------------------------
     // load the Angular generated html file and keep only the important parts
     public string ImportAngularHtml(string edition, string appTag, string appPath = "")
     {
-      // 1. build the path to where the angular app is stored
-      var resourcesPath = App.Folder.Url + "/" + appPath;
-      var indexFile = App.Folder.PhysicalPath + @"\" + appPath + @"\index.html";
-
-      if (Text.Has(edition))
-      {
-        resourcesPath = App.Folder.Url + "/" + edition + appPath;
-        indexFile = App.Folder.PhysicalPath + @"\" + edition + @"\" + appPath + @"\index.html";
-      }
+      // 1. Build the path to where the angular app is stored
+      var editionPath = Text.Has(edition) ? edition + "/" : "";
+      var resourcesPath = App.Folder.Url + "/" + editionPath + appPath;
+      var indexFile = App.Folder.PhysicalPath + @"\" + editionPath.Replace("/", @"\") + appPath + @"\index.html";
 
       string html_orig;
 
