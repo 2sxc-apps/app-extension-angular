@@ -5,22 +5,12 @@
 @using ToSic.Razor.Blade;
 
 @{
-  var editions = MyModel.String("Editions", fallback: "");
-  var angularAppPath = MyModel.String("AngularAppPath", fallback: "");
+  var editions = MyModel.String("Editions");
+  var angularAppPath = MyModel.String("AngularAppPath");
+  var angularAppTag = MyModel.String("AngularAppTag");
+  var angularLocalDevServerPath = MyModel.String("LocalDevServerPath");
+  var angularLocalDevFiles = MyModel.String("LocalDevFiles");
 
-  if (!Text.Has(editions) && !Text.Has(angularAppPath))
-  {
-    <div class="alert alert-warning">
-      No Angular app found. Please configure the Angular app path or editions in the code of your view, or use the default configuration as shown in the documentation.
-    </div>
-    return; 
-  }
-  
-  var angularAppTag = MyModel.String("AngularAppTag", fallback: "app-root");
-  var angularAppName = MyModel.String("AngularAppName", fallback: "ng-app");
-  var angularLocalDevServerPath = MyModel.String("LocalDevServerPath", fallback: "//localhost:4200");
-  var angularLocalDevFiles = MyModel.String("LocalDevFiles", fallback: "runtime.js,polyfills.js,styles.js,vendor.js,main.js");
- 
   // Enable 2sic JS APIs (this will load the latest js-api to help with getting data from 2sxc data base)
   Kit.Page.Activate("2sxc.JsCore");
 
@@ -40,11 +30,11 @@
   }
   else
   {
-    @Html.Raw(angularHelper.ImportAngularHtml(editionsHelper.CurrentEdition, angularAppName, angularAppTag, angularAppPath))
+    @Html.Raw(angularHelper.ImportAngularHtml(Text.Has(editions) ? editionsHelper.CurrentEdition : "", angularAppTag, angularAppPath))
   }
 
   // Show edition selector for host/super users only - you could also change this, to allow testers to see this
-  if (MyUser.IsContentAdmin && Text.Has(editions) && !Text.Has(angularAppPath))
+  if (MyUser.IsContentAdmin && Text.Has(editions))
   {
     @Html.Partial("../js-app-editions/Editions Bar.cshtml", new { Editions = editions })
   }

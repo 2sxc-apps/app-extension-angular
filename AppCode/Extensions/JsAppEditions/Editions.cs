@@ -3,7 +3,8 @@ using System.Web;
 
 namespace AppCode.Extensions.JsEditions
 {
-  public class Editions: Custom.Hybrid.CodeTyped {
+  public class Editions : Custom.Hybrid.CodeTyped
+  {
     // -------------------------------------------------------------------------------------
     // These helpers are used by the CSHTML code which loads the react app.
     // They primarily track what edition to show by showing the links and storing it in a cookie
@@ -15,21 +16,24 @@ namespace AppCode.Extensions.JsEditions
 
     // -------------------------------- Current Edition Info -------------------------------
     /// the current edition of this app, as stored in the cookie (or default in not set)
-    public string CurrentEdition {
+    public string CurrentEdition
+    {
       get { return GetEditionFromCookie(DefaultEdition); }
     }
-    
+
     /// The cookie name to store the edition when developing / testing uses the app-id in the key, so it won't interfere with other apps
-    public string EditionCookieName() {
+    public string EditionCookieName()
+    {
       return CookieNameTemplate.Replace("#", App.AppId.ToString());
     }
 
     /// Get the edition from the cookie
-    public string GetEditionFromCookie(string defaultEdition) {
+    public string GetEditionFromCookie(string defaultEdition)
+    {
       var key = EditionCookieName();
 
-      return HttpContext.Current.Request.Cookies.AllKeys.Contains(key) 
-        ? HttpContext.Current.Request.Cookies.Get(key).Value 
+      return HttpContext.Current.Request.Cookies.AllKeys.Contains(key)
+        ? HttpContext.Current.Request.Cookies.Get(key).Value
         : defaultEdition;
     }
   }

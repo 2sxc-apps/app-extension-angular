@@ -16,16 +16,16 @@ namespace AppCode.Extensions.Angular
 
     // ------------------------------ Get from Generated HTML ------------------------------
     // load the Angular generated html file and keep only the important parts
-    public string ImportAngularHtml(string edition, string appName, string appTag, string appPath = "")
+    public string ImportAngularHtml(string edition, string appTag, string appPath = "")
     {
       // 1. build the path to where the angular app is stored
-      var resourcesPath = App.Folder.Url + "/" + edition + "/dist/" + appName;
-      var indexFile = App.Folder.PhysicalPath + @"\" + edition + @"\dist\" + appName + @"\index.html";
+      var resourcesPath = App.Folder.Url + "/" + appPath;
+      var indexFile = App.Folder.PhysicalPath + @"\" + appPath + @"\index.html";
 
-      if (Text.Has(appPath))
+      if (Text.Has(edition))
       {
-        resourcesPath = App.Folder.Url + "/" + appPath;
-        indexFile = App.Folder.PhysicalPath + appPath + @"\index.html";
+        resourcesPath = App.Folder.Url + "/" + edition + appPath;
+        indexFile = App.Folder.PhysicalPath + @"\" + edition + @"\" + appPath + @"\index.html";
       }
 
       string html_orig;

@@ -1,34 +1,19 @@
 @inherits Custom.Hybrid.RazorTyped
 
 @{
-  @* var angularConfig = new
-  {
-    Editions = "live,staging,local",
-    AngularAppName = "ng-app",
-    AngularAppTag = "app-root",
-    AngularAppPath = "/staging/dist/ng-app",
-    LocalDevServerPath = "http://localhost:4200",
-  }; *@
-
-
-  @* var angularConfig = new
-  {
-    Editions = "live,staging,local",
-    AngularAppName = "angular",
-    AngularAppTag = "app-root",
-    AngularAppPath = "/angular-demo/angular/browser",
-    LocalDevServerPath = "http://localhost:4200",
-    LocalDevFiles = "main.js"
-  }; *@
-
-  @* var angularConfig = new
-  {
-    AngularAppPath = "/staging/dist/ng-app",
-  };   *@
-
   var angularConfig = new
   {
-    Editions = "live,staging,local",
+
+    @* AngularAppPath = "/dist/ng-app", *@
+    AngularAppPath = "/angular-demo/angular/browser",
+    AngularAppTag = "app-root",
+    @* Editions = "live,staging,local", *@
+    @* LocalDevFiles = "runtime.js,polyfills.js,styles.js,vendor.js,main.js" *@
+    @* LocalDevServerPath = "//localhost:4200", *@
+
+    Editions = "",
+    LocalDevServerPath = "",
+    LocalDevFiles = ""
   };
 }
 
