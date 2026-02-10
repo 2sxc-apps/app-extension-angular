@@ -7,11 +7,20 @@
 @{
   var editions = MyModel.String("Editions", fallback: "");
   var angularAppPath = MyModel.String("AngularAppPath", fallback: "");
+
+  if (!Text.Has(editions) && !Text.Has(angularAppPath))
+  {
+    <div class="alert alert-warning">
+      No Angular app found. Please configure the Angular app path or editions in the code of your view, or use the default configuration as shown in the documentation.
+    </div>
+    return; 
+  }
+  
   var angularAppTag = MyModel.String("AngularAppTag", fallback: "app-root");
   var angularAppName = MyModel.String("AngularAppName", fallback: "ng-app");
   var angularLocalDevServerPath = MyModel.String("LocalDevServerPath", fallback: "//localhost:4200");
   var angularLocalDevFiles = MyModel.String("LocalDevFiles", fallback: "runtime.js,polyfills.js,styles.js,vendor.js,main.js");
-
+ 
   // Enable 2sic JS APIs (this will load the latest js-api to help with getting data from 2sxc data base)
   Kit.Page.Activate("2sxc.JsCore");
 
