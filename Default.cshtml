@@ -1,3 +1,32 @@
 @inherits Custom.Hybrid.RazorTyped
 
-@Html.Partial("./extensions/angular-loader/Angular Main.cshtml")
+@{
+  @* var angularConfig = new
+  {
+    Editions = "live,staging,local",
+    AngularAppName = "ng-app",
+    AngularAppTag = "app-root",
+    AngularAppPath = "/staging/dist/ng-app",
+    LocalDevServerPath = "http://localhost:4200",
+  }; *@
+
+
+  @* var angularConfig = new
+  {
+    Editions = "live,staging,local",
+    AngularAppName = "angular",
+    AngularAppTag = "app-root",
+    AngularAppPath = "/angular-demo/angular/browser",
+    LocalDevServerPath = "http://localhost:4200",
+    LocalDevFiles = "main.js"
+  }; *@
+
+  var angularConfig = new
+  {
+    Editions = "live,staging,local",
+    AngularAppName = "ng-app",
+    AngularAppTag = "app-root"
+  };
+}
+
+@Html.Partial("./extensions/angular-loader/Angular Main.cshtml", data: angularConfig)

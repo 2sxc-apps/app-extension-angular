@@ -5,7 +5,12 @@
 @using ToSic.Razor.Blade;
 
 @{
-  var editions = MyModel.String("Editions", fallback: "live,staging,local");
+  var editions = MyModel.String("Editions", fallback: "");
+  var angularAppPath = MyModel.String("AngularAppPath", fallback: "");
+  var angularAppTag = MyModel.String("AngularAppTag", fallback: "app-root");
+  var angularAppName = MyModel.String("AngularAppName", fallback: "ng-app");
+  var angularLocalDevServerPath = MyModel.String("LocalDevServerPath", fallback: "//localhost:4200");
+  var angularLocalDevFiles = MyModel.String("LocalDevFiles", fallback: "runtime.js,polyfills.js,styles.js,vendor.js,main.js");
 
   // Enable 2sic JS APIs (this will load the latest js-api to help with getting data from 2sxc data base)
   Kit.Page.Activate("2sxc.JsCore");
@@ -22,15 +27,15 @@
   // Show Angular either from dev (local) or from the compiled live/staging folders
   if (editionsHelper.CurrentEdition == "local")
   {
-    @Html.Partial("./Angular Local Dev.cshtml")
+    @Html.Partial("./Angular Local Assets.cshtml", new { LocalDevServerPath = angularLocalDevServerPath, LocalDevFiles = angularLocalDevFiles, AngularAppTag = angularAppTag })
   }
   else
   {
-    @Html.Raw(angularHelper.ImportAngularHtml(editionsHelper.CurrentEdition))
+    @Html.Raw(angularHelper.ImportAngularHtml(editionsHelper.CurrentEdition, angularAppName, angularAppTag, angularAppPath))
   }
 
   // Show edition selector for host/super users only - you could also change this, to allow testers to see this
-  if (MyUser.IsContentAdmin)
+  if (MyUser.IsContentAdmin && Text.Has(editions) && !Text.Has(angularAppPath))
   {
     @Html.Partial("../js-app-editions/Editions Bar.cshtml", new { Editions = editions })
   }
