@@ -3,18 +3,21 @@
 @{
   var angularConfig = new
   {
+    AngularAppPath = "/dist/ng-app",
+    AngularAppTag = "app-root",
+    Editions = "live,staging,local",
+    LocalDevServerPath = "//localhost:4200",
+    LocalDevFiles = "runtime.js,polyfills.js,styles.js,vendor.js,main.js"
+  };
 
-    @* AngularAppPath = "/dist/ng-app", *@
+  @* var angularConfig = new
+  {
     AngularAppPath = "/angular-demo/angular/browser",
     AngularAppTag = "app-root",
-    @* Editions = "live,staging,local", *@
-    @* LocalDevFiles = "runtime.js,polyfills.js,styles.js,vendor.js,main.js" *@
-    @* LocalDevServerPath = "//localhost:4200", *@
-
     Editions = "",
     LocalDevServerPath = "",
     LocalDevFiles = ""
-  };
+  }; *@
 }
 
 @Html.Partial("./extensions/angular-loader/Angular Main.cshtml", data: angularConfig)
