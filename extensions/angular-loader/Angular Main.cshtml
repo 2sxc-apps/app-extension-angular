@@ -5,11 +5,11 @@
 @using ToSic.Razor.Blade;
 
 @{
-  var editions = MyModel.String("Editions");
+  var editions = MyModel.String("Editions", fallback: "");
   var angularAppPath = MyModel.String("AngularAppPath");
   var angularAppTag = MyModel.String("AngularAppTag");
-  var angularLocalDevServerPath = MyModel.String("LocalDevServerPath");
-  var angularLocalDevFiles = MyModel.String("LocalDevFiles");
+  var angularLocalDevServerPath = MyModel.String("LocalDevServerPath", fallback: "");
+  var angularLocalDevFiles = MyModel.String("LocalDevFiles", fallback: "");
 
   // Enable 2sic JS APIs (this will load the latest js-api to help with getting data from 2sxc data base)
   Kit.Page.Activate("2sxc.JsCore");
