@@ -2,8 +2,8 @@
 
 # App Template for Angular Best Practices with DNN and 2sxc
 
-| 2sxc                | ✅    | requires 2sxc v16.04
-| Dnn                 | ✅    | For v9.6.1+
+| 2sxc                | ✅    | requires 2sxc v21.02
+| Dnn                 | ✅    | For v9.11.01+
 | Angular             | ✅    | For v20.0.0
 
 ## What is this?
@@ -26,8 +26,28 @@ The solution in as **2sxc App** and can be installed from 2sxc (inside DNN). Fol
 
 ## History
 
-* 2020-11-09
-  * Updated shared code which extracts the generated index.html for DNN
+TODO: history not quite right, this is not the template app, but the internal app to build the extensions...
+
+1. v01.00.00 2026-02-11
+
+* Initial version with...
+
+* v18.00.00 2024-06-30
+  * Migration to Angular 20
+* v18.00.00 2024-10-01
+  * Migration to Angular 18
+* v17.00.00 2024-03-05
+  * Migration to Angular 17
+* v16.00.00 2023-10-04
+  * Refactor Filename _
+  * Migration to Angular 16
+  * Update Readme
+  * Refactor Name to Template-Angular
+  * Update 2sxc v16 Standards Typed
+* 2022-07-08
+  * Migration to Angular 14
+  * dnn-sxc-angular replaced by new sxc-angular lib (v14.07.01)
+  * Using latest (v14.07.03) 2sxc-typings
 * 2021-02-25
   * Improved razor code split
   * Using latest (v11) dnn-sxc-angular
@@ -36,19 +56,5 @@ The solution in as **2sxc App** and can be installed from 2sxc (inside DNN). Fol
   * Edit-toolbars in the application
   * After edit a callback refreshes the data (instead of page reload)
   * Made data multi-language (English and German)
-* 2022-07-08
-  * Migration to Angular 14
-  * dnn-sxc-angular replaced by new sxc-angular lib (v14.07.01)
-  * Using latest (v14.07.03) 2sxc-typings
-* v16.00.00 2023-10-04
-  * Refactore Filename _
-  * Migration to Angular 16
-  * Update Readme
-  * Refactore Name to Template-Angular
-  * Update 2sxc v16 Standards Typed
-* v17.00.00 2024-03-05
-  * Migration to Angular 17
-* v18.00.00 2024-10-01
-  * Migration to Angular 18
-* v18.00.00 2024-06-30
-  * Migration to Angular 20
+* 2020-11-09
+  * Updated shared code which extracts the generated index.html for DNN

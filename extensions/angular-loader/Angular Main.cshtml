@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-@using AppCode.Extensions.JsEditions
+@using AppCode.Extensions.JsAppEditions
 @using AppCode.Extensions.Angular
 @using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
@@ -18,7 +18,7 @@
   Kit.Page.SetBase((Link.Base()));
 
   // Create helper to manage the editions (live, staging etc.)
-  var editionsHelper = GetService<Editions>();
+  var editionsHelper = GetService<JsAppEditionService>();
 
   // Create helper to integrate angular best-practice
   var angularHelper = GetService<Angular>();

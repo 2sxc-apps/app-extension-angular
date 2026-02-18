@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Extensions.JsAppEditions
+
+@{
+  var editionsHelper = GetService<JsAppEditionService>();
+
+  <div class="alert alert-info">Show <strong>@editionsHelper.CurrentEdition</strong> Environment</div>
+
+  if (MyUser.IsContentAdmin)
+  {
+    @Html.Partial("extensions/js-app-editions/Editions Bar.cshtml", new { Editions = "live,staging" })
+  }
+}

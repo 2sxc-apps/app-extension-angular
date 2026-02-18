@@ -7,10 +7,10 @@ namespace AppCode.Extensions.Angular
 {
   public class Angular : Custom.Hybrid.CodeTyped
   {
-    // -------------------------------------------------------------------------------------
-    // These helpers are used by the CSHTML code which loads the angular app.
-    // They do a bunch of things, like switching between testing/live code and more.
-    // -------------------------------------------------------------------------------------
+    /// <summary>
+    /// These helpers are used by the CSHTML code which loads the angular app.
+    /// They do a bunch of things, like switching between testing/live code and more.
+    /// </summary>
 
     // ------------------------------ Get from Generated HTML ------------------------------
     // load the Angular generated html file and keep only the important parts
@@ -23,7 +23,9 @@ namespace AppCode.Extensions.Angular
 
       string html_orig;
 
-      // 2. Read body contents from index.html
+      /// <summary>
+      /// Read body contents from index.html
+      /// </summary>
       try
       {
         html_orig = System.IO.File.ReadAllText(indexFile);
@@ -33,24 +35,32 @@ namespace AppCode.Extensions.Angular
         return "Error trying to access '" + indexFile + "' - it probably doesn't exist";
       }
 
-      // 3.1. Get only the body contents
+      /// <summary>
+      /// Get only the body contents
+      /// </summary>
       var html = Regex.Match(html_orig, "<body.*?>(.*?)</body>", RegexOptions.Singleline).Groups[1].Value;
 
-      // 3.2. Get stylesheets
+      /// <summary>
+      /// Get stylesheets
+      /// </summary>
       html += Regex.Match(html_orig, "<link rel=\"stylesheet\".*?>", RegexOptions.Singleline).Groups[0].Value;
 
-      // 4. Change stylesheet and script paths
+      /// <summary>
+      /// Change stylesheet and script paths
+      /// </summary>
       html = Regex.Replace(html, "(src|href)=\"(.*?)\"", "$1=\"" + resourcesPath + "/$2\"");
 
-      // 5. find the app-tag, and add the edition
-      // var publicResourcePath = App
+      /// <summary>
+      /// Find the app-tag, and add the edition
+      /// </summary>  
       html = html.Replace("<" + appTag + ">", "<" + appTag + AppAttributes(edition, resourcesPath + "/") + ">");
 
       return html;
     }
 
-    // --------------------------------   Get from ng serve   -------------------------------
-    // This returns the tag needed to hot-load the angular app 
+    /// <summary>
+    /// This returns the tag needed to hot-load the angular app 
+    /// </summary>
     public dynamic GetLocalDevTag(string appTag, string localDevServer, string edition = "local")
     {
       return "<" + appTag + AppAttributes(edition, localDevServer + "/") + ">"
